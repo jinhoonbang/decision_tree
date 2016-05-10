@@ -59,6 +59,7 @@ def decision_tree_driver(train, validate = False, predict = False, prune = False
     cursor.close()
     print 'Decision Tree written to /output/DNF'
     print ''
+    print "Unpruned Split Count : {}".format(tree.count_splits())
 
     # call reduced error pruning using the pruning set
     if prune != False:
@@ -92,6 +93,7 @@ def decision_tree_driver(train, validate = False, predict = False, prune = False
         accuracy = validation_accuracy(tree,validate_set)
         print "Accuracy on validation set: " + str(accuracy)
         print ''
+        print "Pruned Split Count : {}".format(tree.count_splits())
 
     # generate predictions on the test set
     if predict != False:

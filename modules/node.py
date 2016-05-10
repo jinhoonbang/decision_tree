@@ -93,7 +93,6 @@ class Node:
             if node.label is None:
                 if node.is_nominal:
                     for k,v in node.children.items():
-                        print("name {}, value {}".format(node.name, k))
                         todo.append((v, condition + str(node.name) + " = " + str(k) +" ^"))
                 else:
                     todo.append((node.children[0], condition + str(node.name) + " < " + str(node.splitting_value) + " ^"))
@@ -103,6 +102,29 @@ class Node:
                     #remove last "^"
                     result = concat_result(result, condition[:-1])
         return result
+
+
+    def count_splits(self):
+
+        counter = 0
+        todo = []
+        todo.append(self)
+
+        while todo:
+            n = todo.pop()
+            if n.label is None:
+                counter += 1
+                if n.is_nominal:
+                    for k,v in n.children.items():
+                        todo.append(v)
+                else:
+                    todo.append(n.children[0])
+                    todo.append(n.children[1])
+
+        return counter
+
+
+
 
 
 

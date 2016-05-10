@@ -76,6 +76,7 @@ def parse(filename, keep_unlabeled):
 
     default = {}
     for i in range(len(attributes) - 1):
+
         if attributes[i]['is_nominal']:
             m = {}
             for row in fileToRead:
@@ -83,9 +84,9 @@ def parse(filename, keep_unlabeled):
                 if temp[i] != '?':
                     val = int(temp[i])
                     if val not in m:
-                        m[i] = 1
+                        m[val] = 1
                     else:
-                        m[i] += 1
+                        m[val] += 1
             maximum = max(m, key=m.get)
             default[i] = maximum
 
@@ -98,8 +99,6 @@ def parse(filename, keep_unlabeled):
                     sigma += float(temp[i])
                     n_row += 1
             default[i] = sigma / n_row
-
-        if attributes[i]
 
         csvfile.seek(0)
         fileToRead.next()

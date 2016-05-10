@@ -2,8 +2,6 @@ import math
 from node import Node
 import sys
 
-splitCounter = 0
-
 def ID3(data_set, attribute_metadata, numerical_splits_count, depth):
     '''
     See Textbook for algorithm.
@@ -18,8 +16,6 @@ def ID3(data_set, attribute_metadata, numerical_splits_count, depth):
 
     '''
     # Your code here
-
-    global splitCounter
 
     n = Node()
     n.mode = mode(data_set)
@@ -39,9 +35,6 @@ def ID3(data_set, attribute_metadata, numerical_splits_count, depth):
         if not best:
             n.label = mode(data_set)
             return n
-
-        splitCounter += 1
-        print(splitCounter)
 
         n.decision_attribute = best
         n.splitting_value = sv
