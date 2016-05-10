@@ -1,5 +1,7 @@
  (oppnuminjured < 3.0 ^numinjured >= 2.0 ) 
 v (oppnuminjured < 3.0 ^numinjured < 2.0 ^oppnuminjured < 2.0 ^numinjured >= 1.0 )
+v (oppnuminjured < 3.0 ^numinjured < 2.0 ^oppnuminjured < 2.0 ^numinjured < 1.0 ^oppnuminjured < 1.0 ^numinjured = -1.0 ^oppnuminjured = -2.0 )
+v (oppnuminjured < 3.0 ^numinjured < 2.0 ^oppnuminjured < 2.0 ^numinjured < 1.0 ^oppnuminjured < 1.0 ^numinjured = -1.0 ^oppnuminjured = -1.0 )
 v (oppnuminjured < 3.0 ^numinjured < 2.0 ^oppnuminjured < 2.0 ^numinjured < 1.0 ^oppnuminjured < 1.0 ^numinjured = 0.0 ^oppwinningpercent >= 0.502972614793 )
 v (oppnuminjured < 3.0 ^numinjured < 2.0 ^oppnuminjured < 2.0 ^numinjured < 1.0 ^oppnuminjured < 1.0 ^numinjured = 0.0 ^oppwinningpercent < 0.502972614793 ^oppwinningpercent >= 0.197799315403 ^winpercent < 0.787913890801 ^oppwinningpercent >= 0.273993193851 )
 v (oppnuminjured < 3.0 ^numinjured < 2.0 ^oppnuminjured < 2.0 ^numinjured < 1.0 ^oppnuminjured < 1.0 ^numinjured = 0.0 ^oppwinningpercent < 0.502972614793 ^oppwinningpercent >= 0.197799315403 ^winpercent < 0.787913890801 ^oppwinningpercent < 0.273993193851 ^winpercent < 0.47343132611 ^rundifferential >= 21.0 )

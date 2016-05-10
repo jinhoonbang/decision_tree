@@ -126,18 +126,20 @@ def pick_best_attribute(data_set, attribute_metadata, numerical_splits_count):
 
     n_col = len(attribute_metadata)
     step = len(data_set) / 5 + 1
+    #step = len(data_set) / 10 + 1
+    #step = len(data_set) / 100 + 1
+    #step = 1
 
     col_ratio = {}
     for i in range(1, n_col):
         is_nominal = attribute_metadata[i]['is_nominal']
         if is_nominal:
-            col_ratio[i] = (gain_ratio_nominal(data_set, i))
+            col_ratio[i] = gain_ratio_nominal(data_set, i)
         else:
-            col_ratio[i] = (gain_ratio_numeric(data_set, i, step)[0])
+            col_ratio[i] = gain_ratio_numeric(data_set, i, step)[0]
 
     best = max(col_ratio, key=col_ratio.get)
     sv = False
-
 
     while True:
         if numerical_splits_count[best] != 0:
@@ -151,7 +153,7 @@ def pick_best_attribute(data_set, attribute_metadata, numerical_splits_count):
     is_nominal = attribute_metadata[best]['is_nominal']
 
     if not is_nominal:
-        sv = (gain_ratio_numeric(data_set, best, step))[1]
+        sv = gain_ratio_numeric(data_set, best, step)[1]
 
     return best, sv
 
@@ -292,6 +294,8 @@ def gain_ratio_nominal(data_set, attribute):
 
     if intr_value == 0:
         return 0
+
+    #return info_gain
     return info_gain / intr_value
 
 
@@ -379,6 +383,8 @@ def gain_ratio_numeric(data_set, attribute, steps):
         if count_big != 0:
             intr -= count_big / n_row * math.log(count_big / n_row, 2)
 
+
+        #ratios.append(info_gain)
         if intr == 0:
             ratios.append(0)
         else:

@@ -94,10 +94,10 @@ def parse(filename, keep_unlabeled):
             sigma = float(0)
             n_row = 0
             for row in fileToRead:
+                n_row += 1
                 temp = row[0].split(',')
                 if temp[i] != '?':
                     sigma += float(temp[i])
-                    n_row += 1
             default[i] = sigma / n_row
 
         csvfile.seek(0)
@@ -124,8 +124,6 @@ def parse(filename, keep_unlabeled):
         d = collections.deque(temp)
         d.rotate(1)
         array.append(list(d))
-
-    array.pop()
 
     # rotate attributes so that it corresponds to the data
     attributes = collections.deque(attributes)

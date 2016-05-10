@@ -36,8 +36,6 @@ def reduced_error_pruning(root,training_set,validation_set):
             curr.label = curr.mode
             accuracy_after = validation_accuracy(root, validation_set)
 
-            print("before: {}, after: {}".format(accuracy_before, accuracy_after))
-
             if accuracy_after < accuracy_before:
                 curr.label = None
                 if curr.is_nominal:

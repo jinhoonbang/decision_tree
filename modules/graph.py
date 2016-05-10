@@ -16,7 +16,7 @@ def get_graph_accuracy_partial(train_set, attribute_metadata, validate_set, nume
     this function will return the validation accuracy of a specified (percentage) portion of the trainging setself.
     '''
 
-    train_set.shuffle()
+    shuffle(train_set)
     frac = int(float(pct) / 100 * len(train_set))
     curr_set = train_set[:frac]
     root = ID3(curr_set, attribute_metadata, numerical_splits_count, depth)
@@ -30,12 +30,13 @@ def get_graph_data(train_set, attribute_metadata, validate_set, numerical_splits
     this function will return an array of the averaged graph accuracy partials based off the number of iterations.
     '''
 
-    if i == 0:
+    if pcts == 0:
         return None
 
     sum_accuracy = float(0)
     for i in range(iterations):
-        sum_accuracy += get_graph_accuracy_partial(train_set, attribute_metadata, validate_set, numerical_splits_count, pct, depth)
+        accuracy = get_graph_accuracy_partial(train_set, attribute_metadata, validate_set, numerical_splits_count, pcts, depth)
+        sum_accuracy += accuracy
 
     return sum_accuracy / iterations
 
@@ -53,7 +54,25 @@ def get_graph(train_set, attribute_metadata, validate_set, numerical_splits_coun
         if accuracy:
             m[i] = accuracy
 
-    m[upper] = validation_accuracy(ID3(train_set, attribute_metadata, numerical_splits_count, depth), validation_set)
+    tree = ID3(train_set, attribute_metadata, numerical_splits_count, depth)
+
+    m[upper] = validation_accuracy(tree, validate_set)
+
+    x = []
+    y = []
+
+    for k,v in m.items():
+        x.append(k)
+        y.append(v)
+
+    plt.scatter(x, y)
+
+    plt.xlabel('Percentage of Data Used (%)')
+    plt.ylabel('Validation Accuracy')
+    plt.title('Learning Curve')
+    plt.grid(True)
+    #plt.savefig("test.png")
+    #plt.show()
 
 
 
